@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="colab_connect",
-    version="0.0.1",
+    version="0.0.2",
     author="Sifat",
     author_email="hossain0338@gmail.com",
     description="Colab Connect",
@@ -24,4 +24,7 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.7',
+    install_requires=[
+   'pyngrok',
+]
 )

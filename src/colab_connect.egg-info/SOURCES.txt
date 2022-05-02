@@ -11,4 +11,5 @@ src/colab_connect/server.py
 src/colab_connect.egg-info/PKG-INFO
 src/colab_connect.egg-info/SOURCES.txt
 src/colab_connect.egg-info/dependency_links.txt
+src/colab_connect.egg-info/requires.txt
 src/colab_connect.egg-info/top_level.txt
