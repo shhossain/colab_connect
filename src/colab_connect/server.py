@@ -53,9 +53,9 @@ class Colab:
             self.log.debug(f'User {username} created')
 
             #log debug changed home directory ownership to self.username
-            cmd2 = f'chown {self.uesrname} -G /home/{self.uesrname}'
+            cmd2 = f'chown {self.uesrname} -G /home/{self.username}'
             self.execute(cmd2)
-            self.log.debug(f'Changed home directory ownership to {self.uesrname}')
+            self.log.debug(f'Changed home directory ownership to {self.username}')
             return True 
         else:
             #log error user not created
