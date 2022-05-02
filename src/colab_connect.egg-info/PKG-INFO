@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: colab-connect
+Version: 0.0.1
+Summary: Colab Connect
+Home-page: https://github.com/hossain0338/colab_connect
+Author: Sifat
+Author-email: hossain0338@gmail.com
+License: UNKNOWN
+Project-URL: Bug Tracker, https://github.com/hossain0338/colab_connect/issues
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# Colab Connect helps you connect with your colleagues in Google Colab
+
+
