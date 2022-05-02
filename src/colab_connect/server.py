@@ -174,14 +174,15 @@ class SSH:
         self.colab = colab
         self.auth_token = auth_token
         self.tunnel_name = tunnel_name
-        if tunnel_name.lower()=='ngrok':
-            self.tunnel = Ngrok(auth_token)
-            self._create_ngrok_tunnel()
-            self._show_ssh_cmd()
         self.log = colab.log
         self._install_ssh()
         self._start_ssh()
         self._check_ssh()
+        
+        if tunnel_name.lower()=='ngrok':
+            self.tunnel = Ngrok(auth_token)
+            self._create_ngrok_tunnel()
+            self._show_ssh_cmd()
         self.backup = DriveBackup(self.colab)
         self.ssh_backup_folder =  self.backup.backup_path('ssh')
         self.ssh_etc_folder = os.path.join(os.sep,'etc','ssh')
