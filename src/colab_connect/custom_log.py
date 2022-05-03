@@ -1,11 +1,43 @@
 import logging
 
+class CustomFormatter(logging.Formatter):
+
+    grey = "\x1b[38;20m"
+    yellow = "\x1b[33;20m"
+    red = "\x1b[31;20m"
+    bold_red = "\x1b[31;1m"
+    reset = "\x1b[0m"
+    format = "%(asctime)s - %(name)s - %(levelname)s - %(message)s (%(filename)s:%(lineno)d)"
+
+    FORMATS = {
+        logging.DEBUG: grey + format + reset,
+        logging.INFO: grey + format + reset,
+        logging.WARNING: yellow + format + reset,
+        logging.ERROR: red + format + reset,
+        logging.CRITICAL: bold_red + format + reset
+    }
+
+    def format(self, record):
+        log_fmt = self.FORMATS.get(record.levelno)
+        formatter = logging.Formatter(log_fmt)
+        return formatter.format(record)
+
+# create logger with 'spam_application'
+logger = logging.getLogger("Colab_Connect")
+logger.setLevel(logging.DEBUG)
+
+# create console handler with a higher log level
+ch = logging.StreamHandler()
+ch.setLevel(logging.DEBUG)
+ch.setFormatter(CustomFormatter())
+logger.addHandler(ch)
+
 class Log:
     def __init__(self,log_level='debug'):
         self.log_level = log_level
-        self._set_log_level()
-        
-    def _set_log_level(self):
+        self.logger = self._set_logger()
+
+    def _set_logger(self):
         log_level = self.log_level.lower()
         level = logging.INFO
         if log_level == 'debug':
@@ -16,21 +48,27 @@ class Log:
             level = logging.ERROR
         elif log_level == 'critical':
             level = logging.CRITICAL
-        # set logging config
-        logging.basicConfig(level=level, format='%(asctime)s %(message)s')
-    
+        
+        logger = logging.getLogger("Colab_Connect")
+        logger.setLevel(level)
+        ch = logging.StreamHandler()
+        ch.setLevel(logging.DEBUG)
+        ch.setFormatter(CustomFormatter())
+        logger.addHandler(ch)
+        return logger
+
     def debug(self,msg):
-        logging.debug(msg)
+        self.logger.debug(msg)
     
     def info(self,msg):
-        logging.info(msg)
+        self.logger.info(msg)
     
     def warning(self,msg):
-        logging.warning(msg)
+        self.logger.warning(msg)
     
     def error(self,msg):
-        logging.error(msg)
+        self.logger.error(msg)
     
     def critical(self,msg):
-        logging.critical(msg)
+        self.logger.critical(msg)
     
